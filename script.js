@@ -60,7 +60,6 @@ function chooseService(e) {
       for (i = 0; i < x.length; i++) {
         if (y === x[i].countryCode) {
           let z = Object.values(x[i].services)
-          console.log(z)
           for (j = 0; j < z.length; j++) {
             let option = document.createElement("option");
             option.innerText = z[j].name;
@@ -69,7 +68,6 @@ function chooseService(e) {
           }
         }
       }
-      
     });
 }
 
