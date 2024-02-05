@@ -1,13 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="./styles.css">
+    <link rel="stylesheet" href="./styles.css" />
     <script defer src="./script.js"></script>
-</head>
-<body>
-    <h1> Test </h1>
-</body>
+  </head>
+  <body>
+    <h1>Where Art Thou?</h1>
+    <form action="whatToWatch" method="get" class="input-form">
+      <div class="country">
+        <label for="country-select">Select your country:</label>
+        <select name="country" id="country-select">
+          <option value="">--Please choose an option--</option>
+        </select>
+      </div>
+      
+      <div class="genre">
+        <label for="genre-select">Select your genre:</label>
+        <select name="genre" id="genre-select">
+          <option value="">--Please choose an option--</option>
+        </select>
+      </div>
+      <div class="media">
+        <label for="media-select">Select your media:</label>
+        <select name="media" id="media-select">
+          <option value="">--Please choose an option--</option>
+          <option value="movie">Movie</option>
+          <option value="show">TV Show</option>
+          <option value="both">Both</option>
+        </select>
+      </div>
+      <div class="service">
+        <label for="service-select">Select your streaming service:</label>
+        <select name="service" id="service-select">
+          <option value="">--Please choose an option--</option>
+        </select>
+      </div>
+      <div class="submit">
+        <input type="submit" value="SUBMIT" />
+      </div>
+    </form>
+  </body>
 </html>
