@@ -1,7 +1,49 @@
 body {
     background-color: lightgray;
-    display: grid;
+    margin: 1em;
+    display: flex;
+    flex-direction: column;
 }
-h1 {
 
+h1 {
+    display: flex;
+    justify-content: center;
+}
+
+form {
+    display: flex;
+    flex-direction: row;
+}
+
+.country {
+    color: blue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.genre {
+    color: orange;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.media {
+    color: red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.service {
+    color: rgb(245, 25, 153);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.submit {
+    display: flex;
+    justify-content: right;
 }
