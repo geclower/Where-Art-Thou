@@ -100,13 +100,13 @@ function handleRequest(e) {
       let arr = data.result;
       let link = "";
       for (i = 0; i < arr.length; i++) {
-        for (j = 0; j < arr[i].streamingInfo.length; j++){
-        if (z === arr[i].streamingInfo[j]){
-            link = arr[i.streamingInfo[j].link]
-        }
-        }
+        // for (j = 0; j < arr[i].streamingInfo.length; j++){
+        // if (z === arr[i].streamingInfo[j]){
+        //     link = arr[i.streamingInfo[j].link]
+        // }
+        // }
         let resultItem = document.createElement("li");
-        resultItem.innerText = `${arr[i].title} ${link}`;
+        resultItem.innerText = `${arr[i].title}`;
         resultItem.value = arr[i];
         contentList.appendChild(resultItem);
         console.log(arr[i].streamingInfo)
