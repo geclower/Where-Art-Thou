@@ -8,25 +8,7 @@ const mediaList = document.querySelector("#media-select");
 const submitBtn = document.querySelector(".submit");
 const contentList = document.querySelector(".results");
 
-// fetch(`${url}/countries`, {
-//   headers: {
-//     "X-RapidAPI-Key": "51743aff86msh302c2f53b560150p1eae9ejsn93fe2f9c4133",
-//   },
-// })
-//   .then((res) => {
-//     return res.json();
-//   })
-//   .then((data) => {
-//     let arr = Object.values(data.result);
-//     for (i = 0; i < arr.length; i++) {
-//       let option = document.createElement("option");
-//       option.innerText = arr[i].name;
-//       option.value = arr[i].countryCode;
-//       countryList.appendChild(option);
-//     }
-//   });
-
-fetch(`${url}/genres`, {
+fetch(`${url}/countries`, {
   headers: {
     "X-RapidAPI-Key": "51743aff86msh302c2f53b560150p1eae9ejsn93fe2f9c4133",
   },
@@ -38,20 +20,139 @@ fetch(`${url}/genres`, {
     let arr = Object.values(data.result);
     for (i = 0; i < arr.length; i++) {
       let option = document.createElement("option");
+      option.innerText = arr[i].name;
+      option.value = arr[i].countryCode;
+      countryList.appendChild(option);
+    }
+  });
+
+fetch(`${url}/genres`, {
+  headers: {
+    "X-RapidAPI-Key": "51743aff86msh302c2f53b560150p1eae9ejsn93fe2f9c4133",
+  },
+})
+  .then((res) => {
+    return res.json();
+  })
+  .then((data) => {
+    let arr = Object.values(data.result);
+    let key = Object.keys(data.result);
+    for (i = 0; i < arr.length; i++) {
+      let option = document.createElement("option");
       option.innerText = arr[i];
-      option.value = arr[i].id;
+      option.value = key[i];
       genreList.appendChild(option);
     }
   });
 
-// countryList.addEventListener("change", chooseService);
+countryList.addEventListener("change", chooseService);
 
-// function chooseService(e) {
+function chooseService(e) {
+  e.preventDefault();
+
+  let y = countryList.value;
+
+  fetch(`${url}/countries`, {
+    headers: {
+      "X-RapidAPI-Key": "51743aff86msh302c2f53b560150p1eae9ejsn93fe2f9c4133",
+    },
+  })
+    .then((res) => {
+      return res.json();
+    })
+    .then((data) => {
+      let arr = Object.values(data.result);
+      for (i = 0; i < arr.length; i++) {
+        if (y === arr[i].countryCode) {
+          let z = Object.values(arr[i].services);
+          for (j = 0; j < z.length; j++) {
+            let option = document.createElement("option");
+            option.innerText = z[j].name;
+            option.value = z[j].id;
+            serviceList.appendChild(option);
+          }
+        }
+      }
+    });
+}
+
+submitBtn.addEventListener("click", handleRequest);
+
+function handleRequest(e) {
+  e.preventDefault();
+  let w = countryList.value;
+  let x = genreList.value;
+  let y = mediaList.value;
+  let z = serviceList.value;
+
+  fetch(
+    `${url}/search/filters?country=${w}&services=${z}&show_type=${y}&genres=${x}`,
+    {
+      headers: {
+        "X-RapidAPI-Key": "51743aff86msh302c2f53b560150p1eae9ejsn93fe2f9c4133",
+      },
+    }
+  )
+    .then((res) => {
+      return res.json();
+    })
+    .then((data) => {
+      let arr = data.result;
+      let link = "";
+      for (i = 0; i < arr.length; i++) {
+        for (j = 0; j < arr[i].streamingInfo.length; j++){
+        if (z === arr[i].streamingInfo[j]){
+            link = arr[i.streamingInfo[j].link]
+        }
+        }
+        let resultItem = document.createElement("li");
+        resultItem.innerText = `${arr[i].title} ${link}`;
+        resultItem.value = arr[i];
+        contentList.appendChild(resultItem);
+        console.log(arr[i].streamingInfo)
+      }
+    });
+}
+
+// if (window.location.pathname.includes("index.html")) {
+//   submitBtn.addEventListener("click", handleRequest);
+// }
+
+// // function handleRequest(e) {
+// //     e.preventDefault();
+
+// //     let w = countryList.value;
+// //     let x = genreList.value;
+// //     let y = mediaList.value;
+// //     let z = serviceList.value;
+
+// //     fetch(`${url}/country=${w}&services=${z}&show_type=${y}&genres=${x}`, {
+// //         headers: {
+// //           "X-RapidAPI-Key": "51743aff86msh302c2f53b560150p1eae9ejsn93fe2f9c4133",
+// //         },
+// //       })
+// //         .then((res) => {
+// //           return res.json();
+// //         })
+// //         .then((data) => {
+// //             let arr = Object.values(data.result);
+// //             for (i = 0; i < arr.length; i++) {
+// //                 let resultItem = document.createElement("li");
+// //                 resultItem.innerText = arr[i].title;
+// //                 resultItem.value = arr[i];
+// //                 contentList.appendChild(resultItem);
+// //               }
+// //         })
+// // }
+
+// function handleRequest(e) {
 //   e.preventDefault();
+//   let w = countryList.value;
+//   let x = genreList.value;
+//   let y = mediaList.value;
+//   let z = serviceList.value;
 
-//   let y = countryList.value;
-
-//   fetch(`${url}/countries`, {
+//   fetch(`${url}/search/filters?country=${w}&services=${z}&show_type=${y}&genres=${x}`, {
 //     headers: {
 //       "X-RapidAPI-Key": "51743aff86msh302c2f53b560150p1eae9ejsn93fe2f9c4133",
 //     },
@@ -60,99 +161,33 @@ fetch(`${url}/genres`, {
 //       return res.json();
 //     })
 //     .then((data) => {
-//       let arr = Object.values(data.result);
+//       let arr = data.result;
+//         console.log(arr)
+//       let htmlString = "";
+
 //       for (i = 0; i < arr.length; i++) {
-//         if (y === arr[i].countryCode) {
-//           let z = Object.values(arr[i].services)
-//           for (j = 0; j < z.length; j++) {
-//             let option = document.createElement("option");
-//             option.innerText = z[j].name;
-//             option.value = z[j].id;
-//             serviceList.appendChild(option);
-//           }
-//         }
+//         const htmlMock = `<li>${arr[i].title}</li>`;
+//         htmlString += htmlMock;
 //       }
+
+//       localStorage.setItem("results", JSON.stringify(htmlString));
+
+//       window.location.href = "result.html";
 //     });
 // }
 
-submitBtn.addEventListener("click", handleRequest);
+// document.addEventListener("DOMContentLoaded", () => {
+//   if (window.location.pathname.includes("result.html")) {
+//     loadResults();
+//   }
+// });
 
-// function handleRequest(e) {
-//     e.preventDefault();
-
-//     let w = countryList.value;
-//     let x = genreList.value;
-//     let y = mediaList.value;
-//     let z = serviceList.value;
-
-//     fetch(`${url}/country=${w}&services=${z}&show_type=${y}&genres=${x}`, {
-//         headers: {
-//           "X-RapidAPI-Key": "51743aff86msh302c2f53b560150p1eae9ejsn93fe2f9c4133",
-//         },
-//       })
-//         .then((res) => {
-//           return res.json();
-//         })
-//         .then((data) => {
-//             let arr = Object.values(data.result);
-//             for (i = 0; i < arr.length; i++) {
-//                 let resultItem = document.createElement("li");
-//                 resultItem.innerText = arr[i].title;
-//                 resultItem.value = arr[i];
-//                 contentList.appendChild(resultItem);
-//               }
-//         })
+// function loadResults() {
+//   console.log("loading results");
+//   const resultsElement = document.querySelector(".results");
+//   if (resultsElement) {
+//     const results = JSON.parse(localStorage.getItem("results")) || [];
+//     // let htmlString = results.map(result => `<li>${result.title}</li>`).join('');
+//     resultsElement.innerHTML = results;
+//   }
 // }
-
-function handleRequest(e) {
-    e.preventDefault()
-  let dummyData = [
-    {
-      type: "movie",
-      title: "Army of Thieves",
-      streamingInfo: {},
-      year: 2021,
-      imdbId: "tt13024674",
-      tmdbId: 796499,
-      originalTitle: "Army of Thieves",
-      genres: [],
-      directors: [],
-    },
-    {
-      type: "movie",
-      title: "Army of Mice",
-      streamingInfo: {},
-      year: 2021,
-      imdbId: "tt13024674",
-      tmdbId: 796499,
-      originalTitle: "Army of Thieves",
-      genres: [],
-      directors: [],
-    },
-    {
-      type: "movie",
-      title: "Army of Cats",
-      streamingInfo: {},
-      year: 2021,
-      imdbId: "tt13024674",
-      tmdbId: 796499,
-      originalTitle: "Army of Thieves",
-      genres: [],
-      directors: [],
-    },
-  ];
-
-    let arr = dummyData;
-
-    let htmlString = ""
-
-    for (i = 0; i < arr.length; i++) {
-        const htmlMock = `<li>${arr[i].title}</li>`
-        htmlString += htmlMock
-    }
-
-    console.log(htmlString)
-    
-    window.location.replace("result.html")
-    contentList.insertAdjacentHTML("beforeend", htmlString);
-}
