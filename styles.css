@@ -8,13 +8,14 @@ body {
   display: flex;
   flex-direction: column;
   background: linear-gradient(#d5f2e3, #73ba9b, #003e1f);
-  background-repeat: none;
+  background-repeat: no-repeat;
   background-size: cover;
+  background-attachment: fixed;
 }
 
-img{
-    height: 20px;
-    width: 20px;
+img {
+  height: 20px;
+  width: 20px;
 }
 
 h1 {

@@ -83,41 +83,42 @@ function chooseService(e) {
 submitBtn.addEventListener("click", handleRequest);
 
 function handleRequest(e) {
-  e.preventDefault();
-  let w = countryList.value;
-  let x = genreList.value;
-  let y = mediaList.value;
-  let z = serviceList.value;
-
-  fetch(
-    `${url}/search/filters?country=${w}&services=${z}&show_type=${y}&genres=${x}`,
-    {
-      headers: {
-        "X-RapidAPI-Key": "51743aff86msh302c2f53b560150p1eae9ejsn93fe2f9c4133",
-      },
-    }
-  )
-    .then((res) => {
-      return res.json();
-    })
-    .then((data) => {
-      let arr = data.result;
-      let link = "";
-      
-      for (i = 0; i < arr.length; i++) {
-        let arrTwo = Object.values(arr[i].streamingInfo);
-        console.log(arrTwo);
-        for (j = 0; j < arrTwo.length; j++) {
-          if (z === arrTwo[i][0].service) {
-            link = arrTwo[i][0].link;
-          }
-        }
-        const mockHTML = `
-        <li><a href=${link} target="blank">${arr[i].title}</a></li>`;
-        contentList.insertAdjacentHTML("beforeend", mockHTML);
+    e.preventDefault();
+    let w = countryList.value;
+    let x = genreList.value;
+    let y = mediaList.value;
+    let z = serviceList.value;
+  
+    fetch(
+      `${url}/search/filters?country=${w}&services=${z}&show_type=${y}&genres=${x}`,
+      {
+        headers: {
+          "X-RapidAPI-Key": "51743aff86msh302c2f53b560150p1eae9ejsn93fe2f9c4133",
+        },
       }
-    });
-}
+    )
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        let movies = data.result;
+        console.log(movies)
+        let link = "";
+  
+        for (let i = 0; i < movies.length; i++) {
+          let streamingOptions = movies[i].streamingInfo[w];
+          console.log("Streaming Options: ", streamingOptions)
+
+          for (let j = 0; j < streamingOptions.length; j++) {
+            if (z === streamingOptions[j].service) {
+              link = streamingOptions[j].link;
+            }
+          }
+          let mockHTML = `<li><a href=${link} target="blank">${movies[i].title}</a></li>`;
+          contentList.insertAdjacentHTML("beforeend", mockHTML);
+        }
+      });
+  }
 
 // if (window.location.pathname.includes("index.html")) {
 //   submitBtn.addEventListener("click", handleRequest);
