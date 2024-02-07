@@ -1,5 +1,9 @@
 console.log("hello");
 
+document.querySelector("img").addEventListener("click", showPic);
+
+function showPic() {}
+
 const url = "https://streaming-availability.p.rapidapi.com";
 const countryList = document.querySelector("#country-select");
 const serviceList = document.querySelector("#service-select");
@@ -99,17 +103,18 @@ function handleRequest(e) {
     .then((data) => {
       let arr = data.result;
       let link = "";
+      
       for (i = 0; i < arr.length; i++) {
-        // for (j = 0; j < arr[i].streamingInfo.length; j++){
-        // if (z === arr[i].streamingInfo[j]){
-        //     link = arr[i.streamingInfo[j].link]
-        // }
-        // }
-        let resultItem = document.createElement("li");
-        resultItem.innerText = `${arr[i].title}`;
-        resultItem.value = arr[i];
-        contentList.appendChild(resultItem);
-        console.log(arr[i].streamingInfo)
+        let arrTwo = Object.values(arr[i].streamingInfo);
+        console.log(arrTwo);
+        for (j = 0; j < arrTwo.length; j++) {
+          if (z === arrTwo[i][0].service) {
+            link = arrTwo[i][0].link;
+          }
+        }
+        const mockHTML = `
+        <li><a href=${link} target="blank">${arr[i].title}</a></li>`;
+        contentList.insertAdjacentHTML("beforeend", mockHTML);
       }
     });
 }
