@@ -18,6 +18,9 @@ form {
   font-size: 30px;
   margin-bottom: 25px;
 }
+select {
+  font-size: 20px;
+}
 
 .country {
   display: grid;
@@ -43,9 +46,9 @@ form {
   align-items: center;
 }
 
-.submit{
-    display: flex;
-    justify-content: center;
+.submit {
+  display: flex;
+  justify-content: center;
   align-items: center;
 }
 
@@ -53,11 +56,11 @@ form {
   background: #0066a2;
   color: white;
   border-style: outset;
-  border-color: #0066a2;
-  height: 50px;
-  width: 100px;
-  font: bold15px arial, sans-serif;
-  text-shadow: none;
+  height: 60px;
+  width: 125px;
+  font-size: 20px;
+  border-radius: 15px;
+  border: 2px solid black;
 }
 
 ul {
@@ -82,14 +85,64 @@ li {
   padding: 10px;
 }
 
-@media (min-width: 500px) and (max-width: 800px){
-    body{
-        background-color: aquamarine;
-    }
+@media (min-width: 500px) and (max-width: 1060px) {
+  body {
+    background-color: aquamarine;
+    display: flex;
+    flex-direction: column;
+  }
+  form {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 2fr 2fr 1fr;
+    grid-template-areas:
+      "country genre"
+      "media service"
+      "submit submit";
+  }
+  select {
+    font-size: 25px;
+  }
+  .submit {
+    display: flex;
+    grid-area: submit;
+    justify-content: center;
+    align-items: center;
+  }
 }
 
-@media (max-width: 499px){
-    body{
-        background-color: antiquewhite;
-    }
+@media (max-width: 499px) {
+  body {
+    background-color: pink;
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+  }
+  h1{
+    font-size: 60px;
+    text-align: center;
+    margin: 15px;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  div {
+    padding: 10px;
+  }
+
+  ul {
+    flex-direction: column;
+    justify-content: center;
+    flex-wrap: nowrap;
+    padding-left: 0;
+  }
+
+  li {
+    width: 90%;
+    flex-direction: column;
+    
+  }
 }
