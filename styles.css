@@ -240,6 +240,7 @@ a {
     grid-area: submit;
     justify-content: center;
     align-items: center;
+    margin-top: 10px;
   }
 }
 
