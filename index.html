@@ -5,11 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Where Art Thou?</title>
     <link rel="stylesheet" href="./styles.css" />
-    <!-- <script defer src="./script.js"></script> -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Limelight&display=swap"
+      rel="stylesheet"
+    />
+    <script defer src="./script.js"></script>
   </head>
   <body>
-    <img src="icons8-paw-64.png" alt="pawprint">
-    <h1>Where Art Thou?</h1>
+    <img id="pawprint" src="icons8-paw-64.png" alt="pawprint" />
+    <h1><img src="WhereArt.png" /> &nbsp; <img src="Thou.png" /></h1>
     <form action="whatToWatch" method="get" class="input-form">
       <div class="country">
         <label for="country-select">Select your country:</label>
@@ -17,7 +23,7 @@
           <option value="">--Please choose an option--</option>
         </select>
       </div>
-      
+
       <div class="genre">
         <label for="genre-select">Select your genre:</label>
         <select name="genre" id="genre-select">
@@ -43,11 +49,12 @@
         <input id="submitbtn" type="submit" value="SUBMIT" />
       </div>
     </form>
-    <ul class ="results">
-        <li><a href="http://www.imgur.com" target="blank">Example One</a></li>
-        <li><a href="http://www.imgur.com" target="blank">Example Two</a></li>
-        <li>Example Three</li>
-        <li>Example Four</li>
+    <ul class="results">
+      <!-- <li><a href="http://www.imgur.com" target="blank">Example One</a></li>
+      <li><a href="http://www.imgur.com" target="blank">Example Two</a></li>
+      <li>Example Three</li>
+      <li>Example Four</li> -->
     </ul>
+    <button class="next">NEXT</button>
   </body>
 </html>
