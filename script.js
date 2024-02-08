@@ -1,8 +1,23 @@
 console.log("hello");
 
-// document.querySelector("img").addEventListener("click", showPic);
+document.querySelector("#pawprint").addEventListener("click", showPic);
 
-// function showPic() {}
+function showPic() {
+    document.querySelector("#boogie").showModal();
+}
+
+document.querySelector(".wrong").addEventListener("click", showAnswer);
+
+function showAnswer() {
+    document.querySelector("#wrongthoughts").showModal();
+}
+
+document.querySelector(".endmodal").addEventListener("click", showAnswerTwo);
+
+function showAnswerTwo() {
+    document.querySelector("#rightthoughts").showModal();
+}
+
 
 const url = "https://streaming-availability.p.rapidapi.com";
 const countryList = document.querySelector("#country-select");
@@ -118,7 +133,6 @@ function handleRequest(e) {
         contentList.insertAdjacentHTML("beforeend", mockHTML);
       }
 
-
       if (data.hasMore) {
         cursor = data.nextCursor;
         nextBtn.style.opacity = 1;
@@ -155,9 +169,7 @@ function handleRequest(e) {
                 let mockHTML = `<li><a href=${link} target="blank">${movies[i].title}</a></li>`;
                 contentList.insertAdjacentHTML("beforeend", mockHTML);
               }
-              
             });
-           
         }
       }
     });
