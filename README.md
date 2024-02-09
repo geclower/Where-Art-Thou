@@ -3,8 +3,8 @@ Title: Where Art Thou, Media
 Description: Based on a filter of 4 options (country, streaming service, genre, and movie/series/both) provide a list of currently available media to stream.
 
 Wireframes: 
-![wireframe](file:///home/geclower/Downloads/WireframeStretchProjectOne.jpg)
-![stretchgoal](file:///home/geclower/Downloads/WireframeProjectOne.jpg)
+![screenshot](WireframeStretchProjectOne.jpg)
+![screenshot](WireframeProjectOne.jpg)
 
 
 API: https://streaming-availability.p.rapidapi.com
