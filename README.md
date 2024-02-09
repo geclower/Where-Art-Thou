@@ -14,4 +14,4 @@ MVP:
 Post MVP:
     - add a search function for specific media
     - link the provided options to their imdb and streaming urls - streaming urls, imbd link not available 
-    
+    - have results appear another html
