@@ -28,3 +28,5 @@ Didn't create a search bar because the API I was working with had limited pulls 
 Would still like to figure outhow to auto-open and display results on second html page
 
 PS: for a fun bonus, click on the pawprint!
+
+
