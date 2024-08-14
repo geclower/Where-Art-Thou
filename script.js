@@ -37,7 +37,6 @@ fetch(`${url}/countries`, {
   })
   .then((data) => {
     let arr = Object.values(data.result);
-    arr.sort();
     for (i = 0; i < arr.length; i++) {
       let option = document.createElement("option");
       option.innerText = arr[i].name;

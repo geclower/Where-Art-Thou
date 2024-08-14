@@ -23,10 +23,12 @@ Results:
 
 Created 4 dropdowns with the content being pulled from the API so they are updated when the api changes. The countries and genres are individual pulls. The streaming service is pulled based on which country you select. When you click the submit button the first 25 medias are pulled and added as a list item with the link to the page of the streaming service attached. If there are more than 25 options a next button appears and if you click it the next 25 options are added to the list.
 
-Didn't create a search bar because the API I was working with had limited pulls per day and i was already reaching my max within 2-3 hoursof testing the content I currently had
+Didn't create a search bar because the API I was working with had limited pulls per day and I was already reaching my max within 2-3 hoursof testing the content I currently had
 
 Would still like to figure outhow to auto-open and display results on second html page
 
 PS: for a fun bonus, click on the pawprint!
 
+Edit(14/8/24):
+Added a numbering for the form to clarfiy the order in which the form should be filled out as the services will not populate until a country is selected. Once the country is selected, the services will autofill with only the streaming services that are available in that country to prevent choosing something that isn't available(ie. Hulu isn't available in New Zealand). 
 
